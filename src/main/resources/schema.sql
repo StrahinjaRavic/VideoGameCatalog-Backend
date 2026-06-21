@@ -1,0 +1,32 @@
+-- Osnovne tabele: admin, korisnici, kategorije, platforme
+DROP TABLE IF EXISTS app_user;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS platform;
+DROP TABLE IF EXISTS category;
+
+CREATE TABLE admin (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE app_user (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    phone VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE category (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE platform (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
