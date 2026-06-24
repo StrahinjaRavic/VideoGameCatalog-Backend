@@ -54,8 +54,11 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/games/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/games/**", "/api/categories/**", "/api/platforms/**", "/api/reviews/game/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/reviews/**").hasRole("USER")
+                .requestMatchers(HttpMethod.PUT, "/api/reviews/**").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, "/api/reviews/**").hasRole("USER")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
